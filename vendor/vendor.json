@@ -1,0 +1,15 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [{
+		"checksumSHA1": "A7SMz3IkSYwVdJdDZQYzM8wUnTg=",
+		"path": "github.com/jasonlvhit/gocron",
+		"revision": "3c914c8681c3998f1dd463d84a4d8c29345e47a4",
+		"revisionTime": "2017-12-26T19:12:23Z"
+	}],
+	"heroku": {
+		"install": ["./..."],
+		"goVersion": "go1.9.3"
+	},
+	"rootPath": "github.com/example-cron-job"
+}
