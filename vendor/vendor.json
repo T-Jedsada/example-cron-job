@@ -1,15 +1,31 @@
 {
 	"comment": "",
-	"ignore": "test",
-	"package": [{
-		"checksumSHA1": "A7SMz3IkSYwVdJdDZQYzM8wUnTg=",
-		"path": "github.com/jasonlvhit/gocron",
-		"revision": "3c914c8681c3998f1dd463d84a4d8c29345e47a4",
-		"revisionTime": "2017-12-26T19:12:23Z"
-	}],
 	"heroku": {
-		"install": ["./..."],
-		"goVersion": "go1.9.3"
+		"goVersion": "go1.9.3",
+		"install": [
+			"./..."
+		]
 	},
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "A7SMz3IkSYwVdJdDZQYzM8wUnTg=",
+			"path": "github.com/jasonlvhit/gocron",
+			"revision": "3c914c8681c3998f1dd463d84a4d8c29345e47a4",
+			"revisionTime": "2017-12-26T19:12:23Z"
+		},
+		{
+			"checksumSHA1": "SZeJU2P/oob6ftNt5ADK5dPWju8=",
+			"path": "github.com/mailgun/mailgun-go",
+			"revision": "ab165bec774949b82229a29e50608fb4f886b92f",
+			"revisionTime": "2018-02-05T21:23:28Z"
+		},
+		{
+			"checksumSHA1": "ljd3FhYRJ91cLZz3wsH9BQQ2JbA=",
+			"path": "github.com/pkg/errors",
+			"revision": "30136e27e2ac8d167177e8a583aa4c3fea5be833",
+			"revisionTime": "2018-01-27T01:58:12Z"
+		}
+	],
 	"rootPath": "github.com/example-cron-job"
 }
