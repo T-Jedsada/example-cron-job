@@ -7,11 +7,13 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gorilla/handlers"
 	"github.com/jasonlvhit/gocron"
 	mailgun "github.com/mailgun/mailgun-go"
 )
 
 var (
+	httpPort      = os.Getenv("PORT")
 	domain        = os.Getenv("DOMAIN_MAILGUN_SANDBOX")
 	apiKeyPublic  = os.Getenv("PUBLIC_KEY_MAILGUN")
 	apiKeyPrivate = os.Getenv("PRIVATE_KEY_MAILGUN")
@@ -32,6 +34,11 @@ type SlackModel struct {
 }
 
 func main() {
+	http.HandleFunc("/cronemail", handlerCronEmail)
+	http.ListenAndServe(":"+httpPort, handlers.LoggingHandler(os.Stdout, http.DefaultServeMux))
+}
+
+func handlerCronEmail(w http.ResponseWriter, r *http.Request) {
 	startJob()
 }
 
