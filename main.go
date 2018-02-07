@@ -16,8 +16,11 @@ var (
 	apiKeyPublic  = os.Getenv("PUBLIC_KEY_MAILGUN")
 	apiKeyPrivate = os.Getenv("PRIVATE_KEY_MAILGUN")
 	counter       = 0
-	slack         = "https://hooks.slack.com/services/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"
+	slack         = "https://hooks.slack.com/services/" + os.Getenv("TOKEN_SLACK")
 	contentType   = "application/json"
+	channelSlack  = os.Getenv("CHNNALE_SLACK")
+	from          = os.Getenv("FROM")
+	emailTo       = os.Getenv("EMAIL_TO")
 )
 
 // SlackModel is model convert from file json
@@ -33,7 +36,7 @@ func main() {
 }
 
 func startJob() {
-	gocron.Every(15).Minutes().Do(sendEmailWithMailGun)
+	gocron.Every(1).Minutes().Do(sendEmailWithMailGun)
 	<-gocron.Start()
 }
 
@@ -60,10 +63,10 @@ func sendEmailWithMailGun() {
 func sendEmail() (err error) {
 	mg := mailgun.NewMailgun(domain, apiKeyPrivate, apiKeyPublic)
 	message := mg.NewMessage(
-		"jt@20scoops.net",
+		from,
 		"test",
 		fmt.Sprintf("round at : %d", counter),
-		"pondthaitay@hotmail.com")
+		emailTo)
 	_, _, err = mg.Send(message)
 	if err != nil {
 		return err
@@ -75,7 +78,7 @@ func sendEmail() (err error) {
 func tickerToSlack() (err error) {
 	var jsonModel SlackModel
 	jsonModel.Text = fmt.Sprintf("send email round : %d", counter)
-	jsonModel.Channel = "#pondthaitay_chanel"
+	jsonModel.Channel = channelSlack
 	jsonModel.IconURL = "http://www.mailgun.com/wp-content/uploads/2017/05/mailgun.png"
 	jsonModel.Username = "MailGun"
 	str, err := json.Marshal(jsonModel)
